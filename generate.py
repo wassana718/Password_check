@@ -1,23 +1,19 @@
+#import re
 import re
 
-
+# Function started
 def check_password_strength(password):
-    # criteria definitions
+    # check password length
     length_error = len(password) < 8
+    # check digit , uppercase, lowercase, symbol
     digit_error = re.search(r"\d", password) is None
     uppercase_error = re.search(r"[A-Z]", password) is None
     lowercase_error = re.search(r"[a-z]", password) is None
     symbol_error = re.search(r"[ !@#$%^&*()_+=]", password) is None
 
-    # Evaluate password
-    password_ok = not (
-        length_error
-        or digit_error
-        or uppercase_error
-        or lowercase_error
-        or symbol_error
-    )
 
+    password_ok = not (length_error or digit_error or uppercase_error or lowercase_error or symbol_error)
+# check password strong or week
     if password_ok:
         return "strong password"
     else:
@@ -37,5 +33,6 @@ def check_password_strength(password):
 
 
 password = input("Enter a password to check :")
+# print password
 print(check_password_strength(password))
 
